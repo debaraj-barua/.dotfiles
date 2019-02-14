@@ -1,7 +1,5 @@
 set encoding=utf-8                      " encoding
-set number                              " show line numbers
 syntax enable                           " enable syntax processing
-set colorcolumn=80                      " set line length to 80
 
 " Tab and indentation
 set tabstop=4       	                " number of visual spaces per TAB
@@ -10,7 +8,9 @@ set expandtab       	                " tabs are spaces
 autocmd FileType make set noexpandtab   " do not convert tabs to spaces in make files
 
 " UI
+colorscheme torte
 set number                              " show line numbers
+set colorcolumn=80                      " set line length to 80
 set cursorline                          " highlight current line
 set wildmenu                            " visual autocomplete for command menu
 set showmatch                           " highlight matching [{()}]
