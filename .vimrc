@@ -1,3 +1,6 @@
+" Automatic reloading of .vimrc
+autocmd! bufwritepost .vimrc source %
+
 set encoding=utf-8                      " encoding
 syntax enable                           " enable syntax processing
 
@@ -26,16 +29,37 @@ set hlsearch                            " highlight matches
 set mouse=a
 
 " Folding
-" set foldenable                        " enable folding
+set foldenable                        " enable folding
 " set foldlevelstart=10                 " open most folds by default
 " set foldnestmax=10                    " 10 nested fold max
-" set foldmethod=marker                 " fold based on indent level
+set foldmethod=indent                 " fold based on indent level
+
+" space open/closes folds
+nnoremap <space> za
 
 " REMAPPINGS
 " -----------------------------------------------------------------------------
 
-" turn off search highlight
+" unhighlight search results
 nnoremap <leader><space> :nohlsearch<CR> 
 
-" space open/closes folds
-" nnoremap <space> za
+
+
+" Splits:
+" specify different areas of the screen where the splits should occur
+set splitbelow
+set splitright
+
+" bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
+" Every unnecessary keystroke that can be saved is good for your health :)
+nnoremap <C-j> <C-w><C-j>
+nnoremap <C-k> <C-w><C-k>
+nnoremap <C-l> <C-w><C-l>
+nnoremap <C-h> <C-w><C-h>
+
+" easier moving of code blocks
+" Try to go into visual mode (v), thenselect several lines of code here and
+" then press ``>`` several times.
+
+vnoremap < <gv  " better indentation
+vnoremap > >gv  " better indentation
