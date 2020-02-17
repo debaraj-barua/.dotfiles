@@ -160,4 +160,6 @@ export NVM_DIR="$HOME/.nvm"
 # ML Dataset directory
 export dataset_dir="/home/debaraj/datasets"
 
+# Restart urserver
+alias restart-urserver='. /opt/urserver/urserver-start && . /opt/urserver/urserver-start &'
 
