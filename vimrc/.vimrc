@@ -13,7 +13,7 @@ set expandtab                         " tabs are spaces
 autocmd FileType make set noexpandtab   " do not convert tabs to spaces in make files
 
 " UI
-colorscheme torte
+colorscheme default
 set number                              " show line numbers
 set colorcolumn=80                      " set line length to 80
 set cursorline                          " highlight current line
@@ -56,6 +56,10 @@ nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l>
 nnoremap <C-h> <C-w><C-h>
 
+" Bind every resize splits to Ctrl+ [key] instead of Ctrl+w+[key]
+" Easier use of splits
+nnoremap <C> < <C-w> <
+
 " easier moving of code blocks
 " Try to go into visual mode (v), thenselect several lines of code here and
 " then press ``>`` several times.
@@ -77,10 +81,10 @@ set wildmenu
 " Tweaks for browsing
 
 let g:netrw_banner=0        " disable annoying banner
-let g:netrw_browse_split=3  " open in new tab
+let g:netrw_browse_split=2  " open in vertical split
 let g:netrw_altv=1          " open splits to the right
 let g:netrw_liststyle=3     " tree view
-let g:netrw_list_hide=netrw_gitignore#Hide()
+" let g:netrw_list_hide=netrw_gitignore#Hide()
 let g:netrw_winsize = 25
 augroup ProjectDrawer
   autocmd!
