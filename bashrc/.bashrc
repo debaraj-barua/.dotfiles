@@ -120,7 +120,7 @@ fi
 
 if [  -d "$HOME"/.bashCustomizations/ ]; then
   # npm functionalities
-  # . "$HOME"/.bashCustomizations/package_specific_functionalities/bashrc_npm.bash
+  . "$HOME"/.bashCustomizations/package_specific_functionalities/bashrc_npm.bash
 
   # git functionalities
   . "$HOME"/.bashCustomizations/package_specific_functionalities/bashrc_git.bash
@@ -138,15 +138,19 @@ fi
 # ---------------------------------------------------------------------------------------
 
 # ROS source
-source /opt/ros/kinetic/setup.bash
+# source /opt/ros/kinetic/setup.bash
 
 # CUDA source
 # export PATH=/usr/local/cuda-10.1/bin${PATH:+:${PATH}}
 # export LD_LIBRARY_PATH="/usr/local/cuda-10.1/lib64:${LD_LIBRARY_PATH+${LD_LIBRARY_PATH}}"
 
 # Oct 2019 CUDA src
-export PATH=/usr/local/cuda-10.1/bin:/usr/local/cuda-10.1/NsightCompute-2019.1${PATH:+:${PATH}}
-export LD_LIBRARY_PATH="/usr/local/cuda-10.1/lib64:${LD_LIBRARY_PATH+${LD_LIBRARY_PATH}}"
+# export PATH=/usr/local/cuda-10.1/bin:/usr/local/cuda-10.1/NsightCompute-2019.1${PATH:+:${PATH}}
+# export LD_LIBRARY_PATH="/usr/local/cuda-10.1/lib64:${LD_LIBRARY_PATH+${LD_LIBRARY_PATH}}"
+
+# Sep 2020 CUDA src /CUDNN Installation
+# export LD_LIBRARY_PATH=/usr/lib/cuda/include:$LD_LIBRARY_PATH
+# export LD_LIBRARY_PATH=/usr/lib/cuda/lib64:$LD_LIBRARY_PATH
 
 # fzf 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -162,4 +166,12 @@ export dataset_dir="/home/debaraj/datasets"
 
 # Restart urserver
 alias restart-urserver='. /opt/urserver/urserver-start && . /opt/urserver/urserver-start &'
+
+# export Android SDK
+export ANDROID_SDK=$HOME/opt/android/
+export PATH=$ANDROID_SDK/emulator:$ANDROID_SDK/tools:$PATH
+export REACT_EDITOR=code
+
+# Check Chrome memory usage
+alias chromem='smem -t -k -c pss -P chrom | tail -n 1'
 
