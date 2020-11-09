@@ -1,0 +1,4 @@
+[core]
+	excludesFile = .dotfiles/git/.gitignore_global
+[alias]
+	glog = log --all --decorate --oneline --graph
