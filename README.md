@@ -3,7 +3,7 @@
 - Clone this repository
   
 ```sh
-cd ~ && git clone git@github.com:debaraj-barua/.dotfiles.git
+cd ~ && git clone https://github.com/debaraj-barua/.dotfiles.git
 ```
 
 ## vim
