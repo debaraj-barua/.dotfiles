@@ -1,7 +1,7 @@
 # .dotfiles
 
 - Clone this repository
-  
+
 ```sh
 cd ~ && git clone https://github.com/debaraj-barua/.dotfiles.git
 ```
@@ -9,7 +9,7 @@ cd ~ && git clone https://github.com/debaraj-barua/.dotfiles.git
 ## vim
 
 - Create a symlink for your vimrc file
-  
+
 ```sh
 ln -rsf ~/.dotfiles/vimrc/.vimrc ~/.vimrc
 ```
@@ -21,6 +21,15 @@ source ~/.dotfiles/vimrc/.vimrc
 ```
 
 ![sample-vim](images/vim-ss.png)
+
+# git
+
+Add this to the global gitconfig:
+
+```sh
+[include]
+    path = .dotfiles/git/.gitconfig
+```
 
 ## bash
 
