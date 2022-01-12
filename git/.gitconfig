@@ -4,7 +4,13 @@
 	excludesFile = .dotfiles/git/.gitignore_global
 [alias]
 	glog = log --all --decorate --oneline --graph
-	llog = log  --date=human --pretty=format:'%C(Yellow)%<(10)%h%C(reset)%C(Green)%<(15)%ad%C(reset) %C(Cyan)%<(15)%an%C(reset) %s%C(Red)%d%C(reset)'
+	llog = log --date=human \
+	 --pretty=format:'%C(Yellow)%<(10)%h%C(reset)%C(Green)%<(15)%ad%C(reset) \
+	 %C(Cyan)%<(15)%an%C(reset) %s%C(Red)%d%C(reset)'
+	# http://git-scm.com/docs/git-log#_pretty_formats
+	# details about formatting: 
+	# https://stackoverflow.com/a/1441062/8031058
+	# https://stackoverflow.com/a/3631819/8031058
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
