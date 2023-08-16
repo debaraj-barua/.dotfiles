@@ -11,6 +11,7 @@
 	# details about formatting: 
 	# https://stackoverflow.com/a/1441062/8031058
 	# https://stackoverflow.com/a/3631819/8031058
+	tag-sync = !git fetch upStream --tags --force && git push origin --tags
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
