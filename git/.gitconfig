@@ -12,12 +12,25 @@
 	# https://stackoverflow.com/a/1441062/8031058
 	# https://stackoverflow.com/a/3631819/8031058
 	tag-sync = !git fetch upStream --tags --force && git push origin --tags
+	main-sync = !git pull upStream main && git push origin main
+	pushfwl = push --force-with-lease
+	staash = stash --all
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
 [pull]
 	ff = only
+
 [init]
 	defaultBranch = main
+
+[rerere]
+	enabled = true
+
+[branch]
+	sort = -committerdate
+
