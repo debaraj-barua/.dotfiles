@@ -1,7 +1,14 @@
 [core]
-	pager = less -FRX
+	pager = delta
 	ignorecase = false
 	excludesFile = .dotfiles/git/.gitignore_global
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  navigate = true
+  side-by-side = true
+[diff]
+  colorMoved = default 
 [alias]
 	glog = log --all --decorate --oneline --graph
 	llog = log --date=human \
@@ -34,3 +41,5 @@
 [branch]
 	sort = -committerdate
 
+[push]
+	autoSetupRemote = true
