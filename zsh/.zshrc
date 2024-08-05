@@ -8,4 +8,10 @@ notunes-show () {
     defaults delete digital.twisted.noTunes; 
     open -a noTunes 
 }
-
+alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+alias bathelp='bat --plain --language=cmd-help'
+help() (
+    set -o pipefail
+    "$@" --help 2>&1 | bathelp
+)
