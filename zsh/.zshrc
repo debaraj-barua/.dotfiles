@@ -20,7 +20,8 @@ notunes-show () {
 # <<< fnm configs start>>> #
 
 # fnm load node version when changing directories
-eval "$(fnm env --use-on-cd --shell zsh)"
+# moved to the top of ~/.zshrc to avoid p10k instant prompt warnings
+# eval "$(fnm env --use-on-cd --shell zsh)"
 
 # fnm completions
 fpath+="/opt/homebrew/share/zsh/site-functions"
