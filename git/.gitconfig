@@ -24,6 +24,7 @@
 	staash = stash --all
 	ssync = !git pull upStream `git rev-parse --abbrev-ref HEAD` && git push origin `git rev-parse --abbrev-ref HEAD`
 	ppull = !git pull upStream `git rev-parse --abbrev-ref HEAD`
+	back = !git stash && git checkout - && git stash pop
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
