@@ -1,2 +1,11 @@
 package-lock.json
 **/credentials.sh
+
+**/.DS_Store
+**/.vscode/settings.json
+**/.yalc
+
+**/*.bak
+**/*~
+**/*.sav
+**/*.swp

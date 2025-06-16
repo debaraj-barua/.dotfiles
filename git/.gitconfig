@@ -1,7 +1,8 @@
 [core]
+    editor = nvim
 	pager = delta
 	ignorecase = false
-	excludesFile = .dotfiles/git/.gitignore_global
+	excludesFile = ~/.dotfiles/git/.gitignore_global
 [interactive]
   diffFilter = delta --color-only
 [delta]
@@ -19,9 +20,10 @@
 	# https://stackoverflow.com/a/1441062/8031058
 	# https://stackoverflow.com/a/3631819/8031058
 	tag-sync = !git fetch upStream --tags --force && git push origin --tags
-	main-sync = !git pull upStream main && git push origin main
 	pushfwl = push --force-with-lease
 	staash = stash --all
+	ssync = !git pull upStream `git rev-parse --abbrev-ref HEAD` && git push origin `git rev-parse --abbrev-ref HEAD`
+	ppull = !git pull upStream `git rev-parse --abbrev-ref HEAD`
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
