@@ -1,48 +1,110 @@
 # .dotfiles
 
-- Clone this repository
+Personal dotfiles repository containing configuration files for various development tools and applications.
+
+## Installation
+
+Clone this repository:
 
 ```sh
-cd ~ && git clone https://github.com/debaraj-barua/.dotfiles.git
+git clone https://github.com/debaraj-barua/.dotfiles.git
 ```
 
-## vim
+**Note:** The setup commands below assume the repository is cloned to `$HOME/.dotfiles`. If you cloned it elsewhere, adjust the paths accordingly.
 
-- Create a symlink for your vimrc file
+## Configurations
+
+### ZSH
+
+Complete ZSH configuration with shell startup scripts and custom configurations.
+
+**Setup:**
 
 ```sh
-ln -rsf ~/.dotfiles/vimrc/.vimrc ~/.vimrc
+ln -s $HOME/.dotfiles/zsh/.zshrc $HOME/.zshrc
+ln -s $HOME/.dotfiles/zsh/.zprofile $HOME/.zprofile
+ln -s $HOME/.dotfiles/zsh/.zshenv $HOME/.zshenv
 ```
 
-- Or, source this vimrc in your main .vimrc
+See `zsh/README.md` for detailed shell startup process information.
+
+### Neovim
+
+Modern Neovim configuration based on Kickstart.nvim with custom settings.
+
+**Setup:**
+
+```sh
+ln -s $HOME/.dotfiles/nvim $HOME/.config/nvim
+```
+
+### Ghostty Terminal
+
+Configuration for the Ghostty terminal emulator with Catppuccin Mocha theme.
+
+**Setup:**
+
+```sh
+ln -s $HOME/.dotfiles/ghostty $HOME/.config/ghostty
+```
+
+Features:
+
+- Catppuccin Mocha theme
+- Background opacity
+- Window padding
+- Clipboard integration
+
+### Vim
+
+Traditional Vim configuration with custom statusline.
+
+**Setup:**
+
+```sh
+ln -s $HOME/.dotfiles/vimrc/.vimrc $HOME/.vimrc
+```
+
+Or source in your existing `.vimrc`:
 
 ```sh
 source ~/.dotfiles/vimrc/.vimrc
 ```
 
-![sample-vim](images/vim-ss.png)
+### Git
 
-# git
+Git configuration with useful aliases and settings.
 
-Add this to the global gitconfig:
+**Setup:**
+Add to your global `.gitconfig`:
 
 ```sh
 [include]
-    path = .dotfiles/git/.gitconfig
+    path = ~/.dotfiles/git/.gitconfig
 ```
 
-## bash
+### Bash
 
-- Create a symlink for your bashrc file
+Bash configuration with custom prompt and aliases.
+
+**Setup:**
 
 ```sh
-ln -rsf ~/.dotfiles/bashrc/.bashrc ~/.bashrc
+ln -s $HOME/.dotfiles/bashrc/.bashrc $HOME/.bashrc
 ```
 
-- Or, source this bashrc in your main .bashrc
+Or source in your existing `.bashrc`:
 
 ```sh
 source ~/.dotfiles/bashrc/.bashrc
 ```
 
-![sample-bash](images/bash-ss.png)
+### Dash to Panel
+
+GNOME extension configuration for Dash to Panel.
+
+**Setup:**
+
+```sh
+ln -s $HOME/.dotfiles/dashToPanel/.dashtopanel $HOME/.local/share/gnome-shell/extensions/dash-to-panel@jderose9.github.com/.dashtopanel
+```
