@@ -1,4 +1,5 @@
-source "$HOME/.cargo/env"
+#source optionally
+# source "$HOME/.cargo/env"
 
 export PATH="$HOME/.jenv/bin:$PATH"
 
