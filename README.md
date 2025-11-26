@@ -22,10 +22,19 @@ Complete ZSH configuration with shell startup scripts and custom configurations.
 
 - Check if direnv is installed, if not install it: https://direnv.net/docs/installation.html
 - Install Oh My Zsh: https://ohmyz.sh/#install
-  - Install OMZ custom plugins:
-    - zsh-autocomplete: https://github.com/marlonrichert/zsh-autocomplete/blob/main/docs/INSTALL.md#oh-my-zsh
+  - Install OMZ custom plugins (if you are using this config, then you don't need to manually activate these plugins, but still need to install them):
+    - zsh-autosuggestions: https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh
+      ```sh
+      git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+      ```
     - Install powerlevel10k: https://github.com/romkatv/powerlevel10k#oh-my-zsh
+      ```sh
+      git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+      ```
     - Install zsh-syntax-highlighting: https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md#oh-my-zsh
+      ```sh
+      git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+      ```
 - Optional:
   - Install fzf: https://junegunn.github.io/fzf/installation/
   - Install pyenv: https://github.com/pyenv/pyenv#installation
