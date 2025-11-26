@@ -40,8 +40,10 @@ alias nvm='echo -n "fnm-> " && fnm'
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 
-eval "$(pyenv init - zsh)"
-eval "$(pyenv virtualenv-init -)"
+if command -v pyenv &> /dev/null; then
+    eval "$(pyenv init - zsh)"
+    eval "$(pyenv virtualenv-init -)"
+fi
 # >>> pyenv configs END <<< #
 
 ### vim opens nvim
@@ -54,3 +56,39 @@ alias oldvim="/usr/bin/vim"
 function cursor {
     open -a "/Applications/Cursor.app" "$@"
 }
+
+# VSCode shell integration
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
+
+
+# Git user email management
+git-set-email() {
+    local email="${1:-$GIT_USER_EMAIL}"
+    
+    if [[ -z "$email" ]]; then
+        echo "Error: No email provided. Either:"
+        echo "  1. Set GIT_USER_EMAIL environment variable, or"
+        echo "  2. Pass email as argument: git-set-email user@example.com"
+        return 1
+    fi
+    
+    git config user.email "$email"
+    echo "Git user email set to: $email"
+    
+    # Optionally show current git config
+    echo "Current git user config:"
+    git config user.name
+    git config user.email
+}
+
+# Shorthand alias
+alias gse='git-set-email'
+
+# Function to show current git user info
+git-show-user() {
+    echo "Current git user configuration:"
+    echo "Name:  $(git config user.name)"
+    echo "Email: $(git config user.email)"
+}
+
+alias gsu='git-show-user'
