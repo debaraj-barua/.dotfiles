@@ -1,0 +1,73 @@
+#!/bin/sh
+
+# Enhanced git checkout that automatically fetches from remotes if branch doesn't exist locally
+# Usage: git check-fetch <branch-name>
+#
+# NOTE: Remote names are hardcoded below. If your repository uses different remote names,
+# you will need to modify the REMOTE_ORIGIN and REMOTE_UPSTREAM constants.
+
+# Hardcoded remote names (modify these if your repository uses different remote names)
+REMOTE_ORIGIN="origin"
+REMOTE_UPSTREAM="upStream"
+
+if [ $# -eq 0 ]; then
+    # If no arguments, just run normal checkout (will show usage)
+    exec git checkout "$@"
+fi
+
+BRANCH="$1"
+shift  # Remove branch name, keep any other arguments for checkout
+
+# Output logs to stderr (will be visible in terminal)
+echo "[git-checkout] Attempting to checkout branch: $BRANCH" >&2
+
+# First, try the normal checkout
+echo "[git-checkout] Stage 1: Trying local checkout..." >&2
+if git checkout "$BRANCH" "$@" 2>/dev/null; then
+    echo "[git-checkout] ✓ Successfully checked out local branch: $BRANCH" >&2
+    exit 0
+fi
+
+echo "[git-checkout] Local checkout failed. Branch '$BRANCH' not found locally." >&2
+
+# Checkout failed, try to fetch from remotes
+REMOTE_USED=""
+
+# Try fetching from origin first
+# Use refspec format to explicitly create local branch from remote
+echo "[git-checkout] Stage 2: Attempting to fetch from '$REMOTE_ORIGIN'..." >&2
+if git fetch "$REMOTE_ORIGIN" "$BRANCH:$BRANCH" 2>/dev/null; then
+    REMOTE_USED="$REMOTE_ORIGIN"
+    echo "[git-checkout] ✓ Successfully fetched branch '$BRANCH' from '$REMOTE_ORIGIN'" >&2
+elif git config --get remote."$REMOTE_UPSTREAM".url >/dev/null 2>&1; then
+    # Check if upstream exists, then try fetching from it
+    echo "[git-checkout] Fetch from '$REMOTE_ORIGIN' failed. Checking if '$REMOTE_UPSTREAM' remote exists..." >&2
+    echo "[git-checkout] Stage 3: Attempting to fetch from '$REMOTE_UPSTREAM'..." >&2
+    if git fetch "$REMOTE_UPSTREAM" "$BRANCH:$BRANCH" 2>/dev/null; then
+        REMOTE_USED="$REMOTE_UPSTREAM"
+        echo "[git-checkout] ✓ Successfully fetched branch '$BRANCH' from '$REMOTE_UPSTREAM'" >&2
+    else
+        echo "[git-checkout] ✗ Failed to fetch branch '$BRANCH' from '$REMOTE_UPSTREAM'" >&2
+    fi
+else
+    echo "[git-checkout] ✗ Remote '$REMOTE_UPSTREAM' does not exist" >&2
+fi
+
+# If we fetched from a remote, try checking out again
+if [ -n "$REMOTE_USED" ]; then
+    echo "[git-checkout] Stage 4: Attempting checkout after fetch from '$REMOTE_USED'..." >&2
+    if git checkout "$BRANCH" "$@"; then
+        echo "✓ Checked out branch '$BRANCH' (fetched from remote: $REMOTE_USED)"
+        exit 0
+    else
+        echo "[git-checkout] ✗ Checkout failed even after fetching from '$REMOTE_USED'" >&2
+    fi
+else
+    echo "[git-checkout] ✗ Could not fetch branch '$BRANCH' from any remote" >&2
+fi
+
+# If we get here, checkout still failed
+# Run the original checkout command to show the actual error
+echo "[git-checkout] Stage 5: Falling back to standard git checkout (will show errors)..." >&2
+exec git checkout "$BRANCH" "$@"
+

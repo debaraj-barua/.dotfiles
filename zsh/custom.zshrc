@@ -28,6 +28,8 @@ help() (
 
 # fnm completions
 fpath+="/opt/homebrew/share/zsh/site-functions"
+# Custom git command completions
+fpath+="$HOME/.dotfiles/git/scripts"
 autoload -Uz compinit
 compinit
 
@@ -92,3 +94,6 @@ git-show-user() {
 }
 
 alias gsu='git-show-user'
+
+# Git custom command completion
+[ -f "$HOME/.dotfiles/git/scripts/git-completion.zsh" ] && source "$HOME/.dotfiles/git/scripts/git-completion.zsh"

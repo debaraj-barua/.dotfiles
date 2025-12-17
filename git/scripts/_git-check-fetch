@@ -1,0 +1,13 @@
+#compdef git-check-fetch
+#description Enhanced checkout that fetches from remotes if branch doesn't exist locally
+
+_git-check-fetch() {
+    # Ensure git completion is loaded
+    (( $+functions[__git_branch_names] )) || _git
+    
+    # Complete branch names (local and remote)
+    _arguments '1: :__git_branch_names'
+}
+
+_git-check-fetch "$@"
+

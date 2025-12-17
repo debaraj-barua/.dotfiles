@@ -1,0 +1,13 @@
+#compdef git-clean-remote
+#description Clean and re-add a git remote
+
+_git-clean-remote() {
+    # Ensure git completion is loaded
+    (( $+functions[__git_remotes] )) || _git
+    
+    # Complete remote names
+    _arguments '1: :__git_remotes'
+}
+
+_git-clean-remote "$@"
+
